@@ -9,7 +9,6 @@ namespace Contract.Mappings
         {
             return new Domain.Entities.Vuelos()
             {
-                NumeroVuelo = request.NumeroVuelo,
                 Capacidad = request.Capacidad,
                 Origen = request.Origen,
                 Destino = request.Destino,

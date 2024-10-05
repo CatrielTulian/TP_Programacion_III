@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Pasajeros
+    public abstract class Pasajeros
     {
-       
-        public List<Reservas> Reservas { get; set; }
+        public int Id { get; set; }
+        public int NroDoc { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        
     }
 }

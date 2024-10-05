@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Reservas 
+    public class Reservas : Pasajeros
     {
-        public int IdReserva { get; set; }
-        public Vuelos Vuelos { get; set; } 
-        public Pasajeros Paciente { get; set; } 
+        public int Id { get; set; }
+        public List<Vuelos> Vuelos { get; set; } 
+        public List<Pasajeros> Pasajeros { get; set; } 
         public DateTime FechaReserva { get; set; } 
        
         public bool EstadoReserva { get; set; }
