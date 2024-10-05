@@ -8,9 +8,10 @@ namespace Domain.Entities
 {
     public class Vuelos 
     {
-        public List<Reservas> Reservas { get; set; }
-        public int NumeroVuelo { get; set; }
+        
+        public int Id { get; set; }
         public int Capacidad { get; set; }
+        public List<Reservas> Reservas { get; set; } = new();
         public string Origen { get; set; }
         public string Destino { get; set; }
         public DateTime FechaSalida { get; set; }
