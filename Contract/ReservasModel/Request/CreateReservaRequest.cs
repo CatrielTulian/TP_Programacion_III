@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Contract.ReservasModel.Request
 {
-    public class Pasajeros : Ticket
+    public class CreateReservaRequest
     {
-        public List<Reservas>? Reservas {  get; set; }
     }
 }

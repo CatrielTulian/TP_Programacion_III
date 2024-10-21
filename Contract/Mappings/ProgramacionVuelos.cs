@@ -25,6 +25,7 @@ namespace Contract.Mappings
                 Origen = vuelo.Origen,
                 Destino = vuelo.Destino,
                 FechaSalida = vuelo.FechaSalida,
+                FechaLlegada= vuelo.FechaLlegada,
             };
         }
     }

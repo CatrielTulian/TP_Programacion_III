@@ -16,12 +16,14 @@ namespace Web.Controllers
         {
             _vuelosService = vuelosService;
         }
+        
         [HttpPost]
         public IActionResult CreateVuelo([FromBody] CreateVueloRequest vuelo)
         {
             _vuelosService.CreateVuelo(vuelo);
             return Ok();
         }
+        
         [HttpGet]
         public IActionResult GetAllVuelos()
         {
