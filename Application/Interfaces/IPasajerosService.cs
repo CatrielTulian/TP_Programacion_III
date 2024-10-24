@@ -5,7 +5,10 @@ namespace Application.Interfaces
 {
     public interface IPasajerosService
     {
-        void CreatePasajero(CreatePasajeroRequest pasajero);
+        void CreatePasajero(PasajeroRequest pasajero);
         List<PasajeroResponse> GetAllPasajeros();
+        PasajeroResponse? GetPasajeroById(int id);
+        bool UpdatePasajero(int id, PasajeroRequest pasajero);
+        bool DeletePasajero(int id);
     }
 }

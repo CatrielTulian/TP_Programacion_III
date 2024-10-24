@@ -1,8 +1,7 @@
 ﻿namespace Contract.Vuelos.Request
 {
-    public class CreateVueloRequest
+    public class VueloRequest
     {
-        public int NumeroVuelo { get; set; }
         public int Capacidad { get; set; }
         public string Origen { get; set; } = string.Empty;
         public string Destino { get; set; }= string.Empty;

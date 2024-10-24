@@ -24,6 +24,10 @@ builder.Services.AddScoped<IPasajeroRepository, PasajeroRepository>();
 builder.Services.AddScoped<IPasajerosService, PasajeroService>();
 builder.Services.AddDbContext<VuelosDbContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("VuelosDbConnection")));
 
+
+builder.Services.AddScoped<IReservaRepository, ReservaRepository>();
+builder.Services.AddScoped<IReservaService, ReservaService>();
+builder.Services.AddDbContext<VuelosDbContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("VuelosDbConnection")));
 #endregion
 
 var app = builder.Build();

@@ -1,6 +1,6 @@
 ﻿namespace Contract.Pasajeros.Request
 {
-    public class CreatePasajeroRequest
+    public class PasajeroRequest
     {
         public int NroDoc { get; set; }
         public string Nombre { get; set; } = string.Empty;
