@@ -23,5 +23,22 @@ namespace Infrastructure.Data
         {
             return _context.Vuelos.ToList();
         } 
+
+        public Vuelos? GetVueloById(int id)
+        {
+            return _context.Vuelos.FirstOrDefault(x => x.Id.Equals(id));
+        }
+
+        public void UpdateVuelo(Vuelos entity) 
+        {
+            _context.Vuelos.Update(entity);
+            _context.SaveChanges();
+        }
+
+        public void DeleteVuelo(Vuelos vuelo)
+        {
+            _context.Vuelos.Remove(vuelo);
+            _context.SaveChanges();
+        }
     }
 }

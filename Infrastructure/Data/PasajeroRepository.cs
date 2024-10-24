@@ -23,5 +23,22 @@ namespace Infrastructure.Data
         {
             return _context.Pasajeros.ToList();
         }
+
+        public Pasajeros? GetPasajeroById(int id) 
+        {
+            return _context.Pasajeros.FirstOrDefault(x => x.Id.Equals(id));
+        }
+        
+        public void UpdatePasajero(Pasajeros entity)
+        {
+            _context.Pasajeros.Update(entity);
+            _context.SaveChanges();
+        }
+
+        public void DeletePasajero(Pasajeros pasajeros) 
+        {
+            _context.Pasajeros.Remove(pasajeros);
+            _context.SaveChanges();
+        }
     }
 }

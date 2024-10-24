@@ -16,7 +16,7 @@ namespace Application.Services
             _vuelorepository = vuelorepository;
         }
 
-        public void CreateVuelo(CreateVueloRequest vuelo)
+        public void CreateVuelo(VueloRequest vuelo)
         {
             var vueloEntity = ProgramacionVuelos.ToVuelosEntity(vuelo);
 
@@ -38,5 +38,42 @@ namespace Application.Services
             return vuelosResponse;
         }
 
+        public VueloResponse? GetVueloById(int id)
+        {
+            var vuelo = _vuelorepository.GetVueloById(id);
+
+            if (vuelo != null)
+            {
+                return ProgramacionVuelos.ToVueloResponse(vuelo);
+            }
+
+            return null;
+        }
+
+        public bool UpdateVuelo(int id, VueloRequest vuelo)
+        {
+            var vueloEntity = _vuelorepository.GetVueloById(id);
+
+            if (vueloEntity != null)
+            {
+                ProgramacionVuelos.ToVueloEntityUpdate(vueloEntity, vuelo);
+                _vuelorepository.UpdateVuelo(vueloEntity);
+
+                return true;
+            }
+            return false;
+        }
+
+        public bool DeleteVuelo(int id) 
+        {
+            var vuelo = _vuelorepository.GetVueloById(id);
+
+            if(vuelo != null)
+            {
+                _vuelorepository.DeleteVuelo(vuelo);
+                return true;
+            }
+            return false;
+        }
     }
 }

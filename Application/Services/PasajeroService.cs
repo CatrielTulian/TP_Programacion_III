@@ -16,7 +16,7 @@ namespace Application.Services
             _pasajerorepository = pasajerorepository;
         }
 
-        public void CreatePasajero(CreatePasajeroRequest pasajero)
+        public void CreatePasajero(PasajeroRequest pasajero) 
         {
             var pasajeroEntity = MapPasajeros.ToPasajerosEntity(pasajero);
 
@@ -38,5 +38,43 @@ namespace Application.Services
             return pasajerosResponse;
         }
 
+        public PasajeroResponse? GetPasajeroById(int id)
+        {
+            var pasajero = _pasajerorepository.GetPasajeroById(id);
+
+            if(pasajero != null)
+            {
+                return MapPasajeros.ToPasajeroResponse(pasajero);
+            }
+
+            return null;
+        }
+
+        public bool UpdatePasajero(int id, PasajeroRequest pasajero)
+        {
+            var pasajeroEntity = _pasajerorepository.GetPasajeroById(id);
+
+            if (pasajeroEntity != null)
+            {
+                MapPasajeros.ToPasajeroEntityUpdate(pasajeroEntity, pasajero);
+                _pasajerorepository.UpdatePasajero(pasajeroEntity);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool DeletePasajero(int id) 
+        {
+            var pasajero = _pasajerorepository.GetPasajeroById(id);
+
+            if( pasajero != null )
+            {
+                _pasajerorepository.DeletePasajero(pasajero);
+                return true;
+            }
+            return false;
+        }
     }
 }

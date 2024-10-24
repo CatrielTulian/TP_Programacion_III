@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
+using System.Numerics;
 
-namespace Contract.ReservasModel.Request
+namespace Contract.Reservas.Request
 {
-    public class CreateReservaRequest
+    public class ReservaRequest
     {
+        public DateTime FechaReserva { get; set; }
+        public bool EstadoReserva { get; set; } = false;
+        public int VueloId { get; set; }
+        public int PasajeroId { get; set; }
     }
 }

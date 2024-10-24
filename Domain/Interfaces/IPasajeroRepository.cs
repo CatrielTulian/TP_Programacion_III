@@ -7,5 +7,9 @@ namespace Domain.Interfaces
     {
         void AddPasajero(Pasajeros entity);
         List<Pasajeros> GetPasajeros();
+        Pasajeros? GetPasajeroById(int id);
+
+        void UpdatePasajero(Pasajeros entity);
+        void DeletePasajero(Pasajeros entity);
     }
 }

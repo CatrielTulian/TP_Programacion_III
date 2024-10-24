@@ -6,5 +6,10 @@ namespace Domain.Interfaces
     {
         void AddVuelo(Vuelos entity);
         List<Vuelos> GetVuelos();
+
+        Vuelos? GetVueloById(int id);
+        void UpdateVuelo(Vuelos entity);
+
+        void DeleteVuelo(Vuelos entity);
     }
 }
