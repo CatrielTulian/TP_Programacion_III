@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
 {
@@ -21,12 +22,24 @@ namespace Infrastructure.Data
 
         public List<Reservas> GetReservas()
         {
-            return _context.Reservas.ToList();
+            return _context.Reservas.Include(x => x.Vuelo).Include(x => x.Pasajero).ToList();
         }
 
         public Reservas? GetReservaById(int id) 
         {
             return _context.Reservas.FirstOrDefault(x => x.Id == id);
+        }
+
+        public void UpdateReserva(Reservas entity)
+        {
+            _context.Reservas.Update(entity);
+            _context.SaveChanges();
+        }
+
+        public void DeleteReserva(Reservas reserva) 
+        {
+            _context.Reservas.Remove(reserva);
+            _context.SaveChanges();
         }
     }
 }

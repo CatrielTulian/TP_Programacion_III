@@ -9,5 +9,7 @@ namespace Application.Interfaces
         void CreateReserva(ReservaRequest reserva);
         List<ReservaResponse> GetAllReservas();
         ReservaResponse? GetReservaById(int id);
+        bool UpdateReserva(int id, ReservaRequest reserva);
+        bool DeleteReserva(int id);
     }
 }
