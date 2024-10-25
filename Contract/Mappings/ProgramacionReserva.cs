@@ -2,6 +2,7 @@
 using Contract.Reservas.Response;
 using Contract.Vuelos.Request;
 using Contract.Pasajeros.Response;
+using DomainEntity = Domain.Entities;
 using Domain.Interfaces;
 
 namespace Contract.Mappings
@@ -48,5 +49,12 @@ namespace Contract.Mappings
             };
         }
 
+        public static void ToReservaEntityUpdate(DomainEntity.Reservas reserva, ReservaRequest request)
+        {
+            reserva.FechaReserva = request.FechaReserva;
+            reserva.EstadoReserva = request.EstadoReserva;
+            reserva.Vuelo = reserva.Vuelo;       // Esto es provisorio
+            reserva.Pasajero = reserva.Pasajero;
+        }
     }
 }

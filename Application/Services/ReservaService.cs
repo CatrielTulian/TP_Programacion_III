@@ -52,5 +52,31 @@ namespace Application.Services
 
             return null;
         }
+
+        public bool UpdateReserva(int id, ReservaRequest reserva)
+        {
+            var reservaEntity = _reservarepository.GetReservaById(id);
+
+            if (reservaEntity != null)
+            {
+                ProgramacionReserva.ToReservaEntityUpdate(reservaEntity, reserva);
+                _reservarepository.UpdateReserva(reservaEntity);
+                return true;
+            }
+            return false;
+            
+        }
+
+        public bool DeleteReserva(int id) 
+        {
+            var reserva = _reservarepository.GetReservaById(id);
+
+            if(reserva != null)
+            {
+                _reservarepository.DeleteReserva(reserva);
+                return true;
+            }
+            return false;
+        }
     }
 }

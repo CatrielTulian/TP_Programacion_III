@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public abstract class Ticket
+    public abstract class Persona
     {
         public int Id { get; set; }
         public int NroDoc { get; set; }

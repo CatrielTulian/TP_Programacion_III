@@ -42,5 +42,17 @@ namespace Web.Controllers
 
             return Ok(response);
         }
+
+        [HttpPut("{id}")]
+        public ActionResult<bool> UpdateReserva([FromRoute] int id, [FromBody] ReservaRequest reserva) 
+        {
+            return Ok(_reservasService.UpdateReserva(id, reserva));
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<bool> DeleteReserva([FromRoute] int id) 
+        { 
+            return Ok(_reservasService.DeleteReserva(id));        
+        }
     }
 }
