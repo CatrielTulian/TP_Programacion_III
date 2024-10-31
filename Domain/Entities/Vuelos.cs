@@ -16,5 +16,9 @@ namespace Domain.Entities
         public string? Destino { get; set; }
         public DateTime FechaSalida { get; set; }
         public DateTime FechaLlegada { get; set; }
+
+        public string User {  get; set; } = string.Empty;
+
+        public string Password { get; set; } = string.Empty;
     }
 }

@@ -2,11 +2,14 @@
 using Contract.Pasajeros.Request;
 using Contract.Pasajeros.Response;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers
+
 {
+    [ApiController]
     [Route("Api/[controller]")]
     public class PasajerosController : Controller
     {
@@ -17,20 +20,23 @@ namespace Web.Controllers
            _pasajerosService = pasajerosService;
        }
 
-       [HttpPost]
-       public IActionResult CreatePasajero([FromBody] PasajeroRequest pasajero)
+        [HttpPost]
+        [Authorize]
+        public IActionResult CreatePasajero([FromBody] PasajeroRequest pasajero)
         {
             _pasajerosService.CreatePasajero(pasajero);
             return Ok();
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetAllPasajeros()
         {
             return Ok(_pasajerosService.GetAllPasajeros());
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public ActionResult<PasajeroResponse?> GetPasajeroById([FromRoute] int id)
         { 
             var response = _pasajerosService.GetPasajeroById(id);
@@ -44,12 +50,14 @@ namespace Web.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public ActionResult<bool> UpdatePasajero([FromRoute] int id, [FromBody] PasajeroRequest pasajero)
         {
             return Ok(_pasajerosService.UpdatePasajero(id, pasajero));
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public ActionResult<bool> DeletePasajero([FromRoute] int id)
         {
             return Ok(_pasajerosService.DeletePasajero(id));
