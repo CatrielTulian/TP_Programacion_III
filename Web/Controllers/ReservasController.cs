@@ -2,13 +2,14 @@
 using Contract.Reservas.Request;
 using Contract.Reservas.Response;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers
 {
-    [Route("Api/[controller]")]
     [ApiController]
+    [Route("Api/[controller]")]
     public class ReservasController : Controller
     {
         private readonly IReservaService _reservasService;
@@ -18,6 +19,7 @@ namespace Web.Controllers
             _reservasService = reservaService;
         }
         [HttpPost]
+        [Authorize]
         public IActionResult CreateReserva([FromBody] ReservaRequest reserva)
         {
             _reservasService.CreateReserva(reserva);
@@ -25,12 +27,14 @@ namespace Web.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetAllReserva()
         {
             return Ok(_reservasService.GetAllReservas());
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public ActionResult<ReservaResponse> GetReservaById([FromRoute] int id)
         {
             var response = _reservasService.GetReservaById(id);
@@ -44,12 +48,14 @@ namespace Web.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public ActionResult<bool> UpdateReserva([FromRoute] int id, [FromBody] ReservaRequest reserva) 
         {
             return Ok(_reservasService.UpdateReserva(id, reserva));
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public ActionResult<bool> DeleteReserva([FromRoute] int id) 
         { 
             return Ok(_reservasService.DeleteReserva(id));        

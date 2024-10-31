@@ -13,6 +13,10 @@ namespace Domain.Entities
         public Pasajeros? Pasajero { get; set; }  = new Pasajeros();
         public DateTime FechaReserva { get; set; }
         public bool EstadoReserva { get; set; } = false;
-        
+
+        public string User { get; set; } = string.Empty;
+
+        public string Password { get; set; } = string.Empty;
+
     }
 }
