@@ -1,6 +1,6 @@
 # TrabajoPracticoGestorPasajes
 Integrantes: Catriel Tulian, Melania Resola, Valentin Cabrera
 
-#Authorize
+Authorize
 User:Admin
 Password:3333
