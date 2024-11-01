@@ -29,10 +29,17 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        
         public IActionResult GetAllPasajeros()
         {
-            return Ok(_pasajerosService.GetAllPasajeros());
+            var response = _pasajerosService.GetAllPasajeros();
+            
+            if (response.Count is 0) 
+            {
+                return NotFound("No se encontraron pasajeros");
+            }
+
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
@@ -41,7 +48,7 @@ namespace Web.Controllers
         { 
             var response = _pasajerosService.GetPasajeroById(id);
 
-            if (response == null) 
+            if (response is null) 
             {
                 return NotFound("Ese pasajero no existe");
             }
