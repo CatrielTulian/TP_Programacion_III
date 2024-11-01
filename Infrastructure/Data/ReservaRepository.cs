@@ -27,7 +27,7 @@ namespace Infrastructure.Data
 
         public Reservas? GetReservaById(int id) 
         {
-            return _context.Reservas.FirstOrDefault(x => x.Id == id);
+            return _context.Reservas.Include(x => x.Vuelo).Include(x => x.Pasajero).FirstOrDefault(x => x.Id == id);
         }
 
         public void UpdateReserva(Reservas entity)

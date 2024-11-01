@@ -10,7 +10,7 @@ namespace Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    
     public class VuelosController : ControllerBase
     {
         private readonly IVueloService _vuelosService;
@@ -21,7 +21,7 @@ namespace Web.Controllers
         }
         
         [HttpPost]
-        
+        [Authorize]
         public IActionResult CreateVuelo([FromBody] VueloRequest vuelo)
         {
             _vuelosService.CreateVuelo(vuelo);
@@ -32,16 +32,23 @@ namespace Web.Controllers
        
         public IActionResult GetAllVuelos()
         {
-            return Ok(_vuelosService.GetAllVuelos());
+            var response = _vuelosService.GetAllVuelos();
+            
+            if (response.Count is 0) 
+            {
+                return NotFound("No se encontraron vuelos");
+            }
+
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
-        
+        [Authorize]
         public ActionResult<VueloResponse?> GetVueloById([FromRoute] int id)
         {
             var response = _vuelosService.GetVueloById(id);
 
-            if (response == null) 
+            if (response is null) 
             {
                 return NotFound("No existe ese número de vuelo");
             }
@@ -50,14 +57,14 @@ namespace Web.Controllers
         }
 
         [HttpPut("{id}")]
-        
+        [Authorize]
         public ActionResult<bool> UpdateVuelo([FromRoute] int id, [FromBody] VueloRequest vuelo)
         {
             return Ok(_vuelosService.UpdateVuelo(id, vuelo));
         }
 
         [HttpDelete("{id}")]
-        
+        [Authorize]
         public ActionResult<bool> DeleteVuelo([FromRoute] int id)
         {
             return Ok(_vuelosService.DeleteVuelo(id));

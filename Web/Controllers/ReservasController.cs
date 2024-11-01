@@ -10,6 +10,7 @@ namespace Web.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
+    [Authorize]
     public class ReservasController : Controller
     {
         private readonly IReservaService _reservasService;
@@ -19,7 +20,7 @@ namespace Web.Controllers
             _reservasService = reservaService;
         }
         [HttpPost]
-        [Authorize]
+        
         public IActionResult CreateReserva([FromBody] ReservaRequest reserva)
         {
             _reservasService.CreateReserva(reserva);
@@ -27,19 +28,25 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        
         public IActionResult GetAllReserva()
         {
-            return Ok(_reservasService.GetAllReservas());
+            var response = _reservasService.GetAllReservas();
+
+            if (response.Count is 0) 
+            {
+                return NotFound("No se encontraron reservas");
+            }
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
-        [Authorize]
+        
         public ActionResult<ReservaResponse> GetReservaById([FromRoute] int id)
         {
             var response = _reservasService.GetReservaById(id);
 
-            if (response == null)
+            if (response is null)
             {
                 return NotFound("No existe ese número de reserva");
             }
@@ -48,14 +55,14 @@ namespace Web.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize]
+        
         public ActionResult<bool> UpdateReserva([FromRoute] int id, [FromBody] ReservaRequest reserva) 
         {
             return Ok(_reservasService.UpdateReserva(id, reserva));
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
+        
         public ActionResult<bool> DeleteReserva([FromRoute] int id) 
         { 
             return Ok(_reservasService.DeleteReserva(id));        
